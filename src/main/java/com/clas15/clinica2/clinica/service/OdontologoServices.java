@@ -19,7 +19,7 @@ public class OdontologoServices {
         this.odonDao = odonDao;
     }
 
-    public Odontologo guarda(Odontologo o){
+    public Odontologo guardar(Odontologo o){
         LOGGER.info("Grabando Odontologo:"+o);
         return odonDao.guardar(o);
     }
