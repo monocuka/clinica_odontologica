@@ -1,5 +1,7 @@
 package com.clas15.clinica2.clinica.model;
 
+import java.util.Set;
+
 public class Odontologo {
 
 
@@ -9,6 +11,8 @@ public class Odontologo {
     private String nombre;
 
     private String apellido;
+
+    private Set<Turno> turno;
 
     public Odontologo(int id, int numeroMatricula, String nombre, String apellido) {
         this.id = id;
@@ -32,6 +36,14 @@ public class Odontologo {
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 '}';
+    }
+
+    public Set<Turno> getTurno() {
+        return turno;
+    }
+
+    public void setTurno(Set<Turno> turno) {
+        this.turno = turno;
     }
 
     public int getId() {

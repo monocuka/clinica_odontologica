@@ -1,6 +1,7 @@
 package com.clas15.clinica2.clinica.model;
 
 import java.util.Date;
+import java.util.Set;
 
 public class Paciente {
 
@@ -10,6 +11,7 @@ public class Paciente {
     private String dni;
     private Date fechaIngreso;
     private Domicilio domicilio;
+    private Set<Turno> turno;
 
     public Paciente(Integer id, String nombre, String apellido, String dni, Date fechaIngreso, Domicilio domicilio) {
         this.id = id;
@@ -29,6 +31,16 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
+
+
+
+    public Set<Turno> getTurno() {
+        return turno;
+    }
+
+    public void setTurno(Set<Turno> turno) {
+        this.turno = turno;
+    }
 
     public String getApellido() {
         return apellido;
@@ -87,6 +99,7 @@ public class Paciente {
                 ", dni='" + dni + '\'' +
                 ", fechaIngreso=" + fechaIngreso +
                 ", domicilio=" + domicilio +
+                ", turno=" + turno +
                 '}';
     }
 }
