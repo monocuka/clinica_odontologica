@@ -1,14 +1,25 @@
 package com.clas15.clinica2.clinica.model;
 
+import jakarta.persistence.*;
+import jakarta.persistence.Table;
+
 import java.util.Date;
 
+@Entity
+@Table(name= "turnos")
 public class Turno {
 
+    @Id
+    @GeneratedValue
     private Integer id;
     private Date fechaCita;
 
+    @ManyToOne
+    @JoinColumn(name="odontologo_id", nullable = false)
     private Odontologo odontologo;
 
+    @ManyToOne
+    @JoinColumn(name="paciente_id", nullable = false)
     private Paciente paciente;
 
     public Integer getId() {

@@ -1,28 +1,63 @@
 package com.clas15.clinica2.clinica.service;
 
-import com.clas15.clinica2.clinica.dao.IDao;
+import com.clas15.clinica2.clinica.DaoRepository.IPacienteRepository;
 import com.clas15.clinica2.clinica.model.Paciente;
+import com.clas15.clinica2.clinica.model.PacienteDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
-public class PacienteService {
+@Service
+public class PacienteService implements IPacienteService{
 
-    private IDao<Paciente> pacienteIDao;
+    @Autowired
+    private IPacienteRepository pacienteRepository;
 
-    public PacienteService(IDao<Paciente> pacienteIDao) {
-        this.pacienteIDao = pacienteIDao;
+    @Autowired
+    ObjectMapper mapper;
+
+    @Override
+    public void crearPaciente(PacienteDTO pacienteDTO) {
+        guardarPaciente(pacienteDTO);
     }
 
-    public Paciente guardar(Paciente p){
-        return pacienteIDao.guardar(p);
+    @Override
+    public PacienteDTO leerPaciente(Integer id) {
+        Optional<Paciente> paciente = pacienteRepository.findById(id); //nos devuelve un paciente por su id. optional per mite preguntar si este objeto tiene o njo contenido.
+        PacienteDTO pacienteDTO = null;
+        if(paciente.isPresent())
+            pacienteDTO = mapper.convertValue(paciente, PacienteDTO.class);
+        return pacienteDTO;
     }
-    public Paciente buscar(int id){
-        return pacienteIDao.buscar(id);
+
+    private void guardarPaciente(PacienteDTO pacienteDTO){
+        Paciente paciente = mapper.convertValue(pacienteDTO, Paciente.class); //convierte pacienteDTO en un objeto de tipo Paciente.
+        pacienteRepository.save(paciente);
     }
-    public List<Paciente> buscarTodos(){
-        return pacienteIDao.buscarTodos();
+    @Override
+    public void modificarPaciente(PacienteDTO pacienteDTO) {
+        guardarPaciente(pacienteDTO);
     }
-    public void eliminar(int id){
-         pacienteIDao.eliminar(id);
+
+    @Override
+    public void eliminarPaciente(Integer id) {
+        pacienteRepository.deleteById(id);
+    }
+
+    @Override
+    public Set<PacienteDTO> getTodos() {
+        List<Paciente> pacientes = pacienteRepository.findAll();
+
+        Set<PacienteDTO> pacientesDTO = new HashSet<>();
+
+        for (Paciente paciente: pacientes){
+            pacientesDTO.add(mapper.convertValue(paciente,PacienteDTO.class));
+        }
+        return pacientesDTO;
     }
 }

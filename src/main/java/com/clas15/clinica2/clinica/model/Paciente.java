@@ -1,17 +1,31 @@
 package com.clas15.clinica2.clinica.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.Set;
 
+@Entity
+@Table(name="Pacientes")
 public class Paciente {
 
+    @Id
+    @GeneratedValue
     private Integer id;
     private String nombre;
     private String apellido;
     private String dni;
     private Date fechaIngreso;
     private Domicilio domicilio;
-    private Set<Turno> turno;
+
+    private String usuario;
+
+    private String password;
+
+    @OneToMany(mappedBy ="paciente")
+    @JsonIgnore
+    private Set<Turno> turnos;
 
     public Paciente(Integer id, String nombre, String apellido, String dni, Date fechaIngreso, Domicilio domicilio) {
         this.id = id;
@@ -35,11 +49,11 @@ public class Paciente {
 
 
     public Set<Turno> getTurno() {
-        return turno;
+        return turnos;
     }
 
     public void setTurno(Set<Turno> turno) {
-        this.turno = turno;
+        this.turnos = turno;
     }
 
     public String getApellido() {
@@ -99,7 +113,7 @@ public class Paciente {
                 ", dni='" + dni + '\'' +
                 ", fechaIngreso=" + fechaIngreso +
                 ", domicilio=" + domicilio +
-                ", turno=" + turno +
+                ", turno=" + turnos +
                 '}';
     }
 }

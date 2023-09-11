@@ -1,18 +1,29 @@
 package com.clas15.clinica2.clinica.model;
 
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
+import java.util.Set;
+@Entity
+@Table(name="odontologos")
 public class Odontologo {
 
-
-    private int id;
-    private int numeroMatricula;
+    @Id
+    @GeneratedValue
+    private Integer id;
+    private Integer numeroMatricula;
 
     private String nombre;
 
     private String apellido;
 
-    private Set<Turno> turno;
+    private String usuario;
+
+    private String password;
+
+    @OneToMany(mappedBy = "odontologo")
+    @JsonIgnore //PARQ EU NO ENTRE EN LOOP INFINITO
+    private Set<Turno> turnos;
 
     public Odontologo(int id, int numeroMatricula, String nombre, String apellido) {
         this.id = id;
@@ -39,11 +50,11 @@ public class Odontologo {
     }
 
     public Set<Turno> getTurno() {
-        return turno;
+        return turnos;
     }
 
     public void setTurno(Set<Turno> turno) {
-        this.turno = turno;
+        this.turnos = turno;
     }
 
     public int getId() {
