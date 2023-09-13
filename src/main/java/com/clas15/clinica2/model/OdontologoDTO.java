@@ -12,7 +12,11 @@ public class OdontologoDTO {
         return id;
     }
 
-    public void setId(Integer id) {
+    public Integer getOdontologo_id() {
+        return id;
+    }
+
+    public void setOdontologo_id(Integer id) {
         this.id = id;
     }
 

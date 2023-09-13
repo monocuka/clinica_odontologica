@@ -2,18 +2,18 @@ package com.clas15.clinica2.model;
 
 public class PacienteDTO {
 
-    private Integer Id;
+    private Integer id;
 
     private String nombre;
 
     private String apellido;
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        id = id;
     }
 
     public String getNombre() {

@@ -1,30 +1,42 @@
 package com.clas15.clinica2.model;
 
 import javax.persistence.*;
-import javax.persistence.Table;
-
 import java.util.Date;
 
 @Entity
-@Table(name= "turnos")
+@Table(name= "Turnos")
 public class Turno {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private Date fechaCita;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinColumn(name="odontologo_id", nullable = false)
     private Odontologo odontologo;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinColumn(name="paciente_id", nullable = false)
     private Paciente paciente;
 
+    public Turno(Integer id, Date fechaCita, Odontologo odontologo, Paciente paciente) {
+        this.id = id;
+        this.fechaCita = fechaCita;
+        this.odontologo = odontologo;
+        this.paciente = paciente;
+    }
+
+    public Turno(Date fechaCita, Odontologo odontologo, Paciente paciente) {
+        this.fechaCita = fechaCita;
+        this.odontologo = odontologo;
+        this.paciente = paciente;
+    }
+
     public Integer getId() {
         return id;
-    }
+    } 
 
     public void setId(Integer id) {
         this.id = id;

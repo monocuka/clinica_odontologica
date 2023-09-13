@@ -1,8 +1,9 @@
 package com.clas15.clinica2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
 
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -18,14 +19,21 @@ public class Paciente {
     private String dni;
     private Date fechaIngreso;
     private Domicilio domicilio;
-
     private String usuario;
-
     private String password;
 
-    @OneToMany(mappedBy ="paciente")
+    private LocalDate fechaNacimiento;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="domi_id")
+
+
+
+
+
     @JsonIgnore
-    private Set<Turno> turnos;
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private Set<Turno> turnos ;
 
     public Paciente(Integer id, String nombre, String apellido, String dni, Date fechaIngreso, Domicilio domicilio) {
         this.id = id;

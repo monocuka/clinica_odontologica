@@ -1,8 +1,9 @@
 package com.clas15.clinica2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
 
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 @Entity
 @Table(name="odontologos")
@@ -21,10 +22,9 @@ public class Odontologo {
 
     private String password;
 
-    @OneToMany(mappedBy = "odontologo")
     @JsonIgnore //PARQ EU NO ENTRE EN LOOP INFINITO
-    private Set<Turno> turnos;
-
+    @OneToMany(mappedBy = "Odontologo", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    private Set<Turno> turnos = new HashSet<>();
     public Odontologo(int id, int numeroMatricula, String nombre, String apellido) {
         this.id = id;
         this.numeroMatricula = numeroMatricula;
@@ -32,44 +32,30 @@ public class Odontologo {
         this.apellido = apellido;
     }
 
-    public Odontologo(int numeroMatricula, String nombre, String apellido) {
+    public Odontologo( Integer id, Integer numeroMatricula, String nombre, String apellido) {
         this.id = 0;
         this.numeroMatricula = numeroMatricula;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    @Override
-    public String toString() {
-        return "Odontologo{" +
-                "id=" + id +
-                ", numeroMatricula=" + numeroMatricula +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                '}';
-    }
+   public Odontologo(){
 
-    public Set<Turno> getTurno() {
-        return turnos;
-    }
+   }
 
-    public void setTurno(Set<Turno> turno) {
-        this.turnos = turno;
-    }
-
-    public int getId() {
+    public Integer getOdontologo_id() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setOdontologo_id(Integer id) {
         this.id = id;
     }
 
-    public int getNumeroMatricula() {
+    public Integer getNumeroMatricula() {
         return numeroMatricula;
     }
 
-    public void setNumeroMatricula(int numeroMatricula) {
+    public void setNumeroMatricula(Integer numeroMatricula) {
         this.numeroMatricula = numeroMatricula;
     }
 
@@ -87,5 +73,15 @@ public class Odontologo {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    @Override
+    public String toString() {
+        return "Odontologo{" +
+                "id=" + id +
+                ", numeroMatricula=" + numeroMatricula +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                '}';
     }
 }

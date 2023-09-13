@@ -1,10 +1,21 @@
 package com.clas15.clinica2.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Domicilios")
 public class Domicilio {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private String calle;
+    @Column
     private String numero;
+    @Column
     private String localidad;
+    @Column
     private String provincia;
 
     public Domicilio(Integer id, String calle, String numero, String localidad, String provincia) {
@@ -13,6 +24,9 @@ public class Domicilio {
         this.numero = numero;
         this.localidad = localidad;
         this.provincia = provincia;
+    }
+    public Domicilio(){
+
     }
     public Domicilio( String calle, String numero, String localidad, String provincia) {
         this.calle = calle;
