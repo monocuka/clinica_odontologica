@@ -6,16 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3e46f8b5-2e8a-4fde-a170-c3e08cb306a7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/clas15/clinica2/controller/implement/OdontologoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/clas15/clinica2/controller/implement/OdontologoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/clas15/clinica2/model/Odontologo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/clas15/clinica2/model/Odontologo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/clas15/clinica2/model/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/clas15/clinica2/model/Paciente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/views/odontologos.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/views/odontologos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/views/pacientes.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/views/pacientes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/views/turnos.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/views/turnos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/clas15/clinica2/model/Odontologo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/clas15/clinica2/model/Odontologo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/clas15/clinica2/model/Paciente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/clas15/clinica2/model/Paciente.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
