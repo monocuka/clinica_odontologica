@@ -2,9 +2,10 @@ package com.clas15.clinica2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 @Entity
 @Table(name="odontologos")
 public class Odontologo {
@@ -23,8 +24,8 @@ public class Odontologo {
     private String password;
 
     @JsonIgnore //PARQ EU NO ENTRE EN LOOP INFINITO
-    @OneToMany(mappedBy = "Odontologo", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private Set<Turno> turnos = new HashSet<>();
+    //@OneToMany(mappedBy = "Odontologo", fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    //private Set<Turno> turnos = new HashSet<>();
     public Odontologo(int id, int numeroMatricula, String nombre, String apellido) {
         this.id = id;
         this.numeroMatricula = numeroMatricula;

@@ -39,9 +39,9 @@ public class OdontologoController implements ControllerCRUDInterface<Odontologo>
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Odontologo> eliminarPorId(@PathVariable("id") Integer id) throws BadRequestException, ResourceNotFoundException {
+    public ResponseEntity<String> eliminarPorId(@PathVariable("id") Integer id) throws BadRequestException, ResourceNotFoundException {
         odontologoService.eliminar(id);
-        return ResponseEntity.ok(("eliminado el odontologo" + id););
+        return ResponseEntity.ok(("eliminado el odontologo" + id));
     }
 
     @GetMapping("/")
