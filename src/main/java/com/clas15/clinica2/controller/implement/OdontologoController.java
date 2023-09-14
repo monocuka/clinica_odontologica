@@ -5,8 +5,7 @@ import com.clas15.clinica2.controller.ControllerCRUDInterface;
 import com.clas15.clinica2.exceptions.BadRequestException;
 import com.clas15.clinica2.exceptions.ResourceNotFoundException;
 import com.clas15.clinica2.model.Odontologo;
-import com.clas15.clinica2.model.OdontologoDTO;
-import com.clas15.clinica2.service.IOdontologoService;
+import com.clas15.clinica2.service.Implementation.OdontologoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,37 +16,37 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Odontologos")
-public class OdontologoController  implements ControllerCRUDInterface<Odontologo> {
+public class OdontologoController implements ControllerCRUDInterface<Odontologo> {
 
     @Autowired
-    IOdontologoService odontologoService;
+    OdontologoService odontologoService;
 
 
     @PostMapping("/")
-    public ResponseEntity<Odontologo> guardar(@RequestBody Odontologo odontologo) throws BadRequestException {
-        return new ResponseEntity<>(odontologoService.guardar(odontologo),HttpStatus.CREATED);
+    public ResponseEntity<Odontologo> guardar(Odontologo odontologo) throws BadRequestException, ResourceNotFoundException, JsonProcessingException {
+        return new ResponseEntity<>(odontologoService.guardar(odontologo), HttpStatus.CREATED);
     }
 
-
     @GetMapping("/{id}")
-    public ResponseEntity<Odontologo> buscarPorId(@PathVariable("id") long id) throws BadRequestException, ResourceNotFoundException {
+    public ResponseEntity<Odontologo> buscarPorId(@PathVariable("id") Integer id) throws BadRequestException, ResourceNotFoundException, JsonProcessingException {
         Odontologo odontologo = odontologoService.buscar(id);
         return ResponseEntity.ok(odontologo);
     }
 
+    @PutMapping("/")
+    public ResponseEntity<Odontologo> actualizar(@RequestBody Odontologo odontologo) throws BadRequestException, ResourceNotFoundException, JsonProcessingException {
+        return ResponseEntity.ok(odontologoService.actualizar(odontologo));
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarPorId(@PathVariable("id") long id) throws BadRequestException, ResourceNotFoundException {
+    public ResponseEntity<Odontologo> eliminarPorId(@PathVariable("id") Integer id) throws BadRequestException, ResourceNotFoundException {
         odontologoService.eliminar(id);
-        return ResponseEntity.ok(("Se eliminó el odontólogo con id " + id));
+        return ResponseEntity.ok(("eliminado el odontologo" + id););
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Odontologo>>buscarTodos() throws ResourceNotFoundException, JsonProcessingException {
+    public ResponseEntity<List<Odontologo>> buscarTodos() throws ResourceNotFoundException, JsonProcessingException {
         return ResponseEntity.ok(odontologoService.buscarTodos());
-    }
-    @PutMapping("/")
-    public ResponseEntity<Odontologo> actualizar(@RequestBody Odontologo odontologo) throws BadRequestException, ResourceNotFoundException {
-        return ResponseEntity.ok(odontologoService.actualizar(odontologo));
     }
 }
 

@@ -1,29 +1,31 @@
 package com.clas15.clinica2.controller.implement;
 
-import com.clas15.clinica2.model.TurnoDTO;
-import com.clas15.clinica2.service.ITurnoService;
+import com.clas15.clinica2.controller.ControllerCRUDInterface;
+import com.clas15.clinica2.exceptions.BadRequestException;
+import com.clas15.clinica2.exceptions.ResourceNotFoundException;
+import com.clas15.clinica2.model.Turno;
+import com.clas15.clinica2.service.Implementation.OdontologoService;
+import com.clas15.clinica2.service.Implementation.PacienteService;
+import com.clas15.clinica2.service.Implementation.Turnoservice;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 
 @RestController
 @RequestMapping("/Turnos")
-public class TurnoController {
+public class TurnoController  implements ControllerCRUDInterface<Turno> {
 
     @Autowired
-    ITurnoService turnoService;
-
+    Turnoservice turnoService;
     @Autowired
     PacienteService pacienteService;
     @Autowired
     OdontologoService odontologoService;
     @GetMapping("/{id}")
-    public ResponseEntity<Turno> buscarPorId(@PathVariable("id") long id) throws BadRequestException, ResourceNotFoundException, JsonProcessingException {
+    public ResponseEntity<Turno> buscarPorId(@PathVariable("id") Integer id) throws BadRequestException, ResourceNotFoundException, JsonProcessingException {
         Turno turno = turnoService.buscar(id);
         return ResponseEntity.ok(turno);
     }
@@ -44,7 +46,7 @@ public class TurnoController {
 
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarPorId(@PathVariable("id") long id) throws BadRequestException, ResourceNotFoundException {
+    public ResponseEntity<String> eliminarPorId(@PathVariable("id") Integer id) throws BadRequestException, ResourceNotFoundException {
         turnoService.eliminar(id);
         return ResponseEntity.ok(("Se eliminó el turno con id " + id));
     }

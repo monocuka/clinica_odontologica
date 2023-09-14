@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public interface ControllerCRUDInterface<T> {
     ResponseEntity<?> guardar(@RequestBody T t) throws BadRequestException, ResourceNotFoundException, JsonProcessingException;
-    ResponseEntity<?> buscarPorId(@PathVariable long id) throws BadRequestException, ResourceNotFoundException, JsonProcessingException;
+    ResponseEntity<?> buscarPorId(@PathVariable Integer id) throws BadRequestException, ResourceNotFoundException, JsonProcessingException;
     ResponseEntity<?> actualizar(@RequestBody T t) throws BadRequestException, ResourceNotFoundException, JsonProcessingException;
-    ResponseEntity<?> eliminarPorId(@PathVariable long id) throws BadRequestException, ResourceNotFoundException;
+    ResponseEntity<?> eliminarPorId(@PathVariable Integer id) throws BadRequestException, ResourceNotFoundException;
     ResponseEntity<?> buscarTodos() throws ResourceNotFoundException,JsonProcessingException;
 }
 
